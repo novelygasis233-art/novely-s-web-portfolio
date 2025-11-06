@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Novely Gasis - Aspiring Web Developer & Data Encoder. BS Computer Science graduate specializing in front-end development.">
+  <meta name="keywords" content="web developer, data encoder, computer science, portfolio">
+  <title>Novely Gasis - Web Developer Portfolio</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Local Styles -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Animated Background -->
+  <div id="starfield" aria-hidden="true"></div>
+  <div class="gradient-orbs" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress" id="scroll-progress"></div>
+
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <i class="fa-solid fa-code"></i>
+        <span>Novely<span class="logo-accent">.</span></span>
+      </div>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home" class="nav-item active">
+          <i class="fa-solid fa-house"></i>
+          <span>Home</span>
+        </a></li>
+        <li><a href="#about" class="nav-item">
+          <i class="fa-solid fa-user"></i>
+          <span>About</span>
+        </a></li>
+        <li><a href="#skills" class="nav-item">
+          <i class="fa-solid fa-gears"></i>
+          <span>Skills</span>
+        </a></li>
+        <li><a href="#projects" class="nav-item">
+          <i class="fa-solid fa-diagram-project"></i>
+          <span>Projects</span>
+        </a></li>
+        <li><a href="#contact" class="nav-item">
+          <i class="fa-solid fa-envelope"></i>
+          <span>Contact</span>
+        </a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light mode">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <div class="profile-container">
+          <div class="profile-ring"></div>
+          <img src="image.jpg" alt="Novely Gasis - Web Developer" class="profile-pic" loading="lazy" />
+          <div class="status-badge">
+            <span class="status-dot"></span>
+            Available for Work
+          </div>
+        </div>
+        
+        <div class="hero-text">
+          <h1 class="hero-title">
+            Hi, I'm <span class="gradient-text">Novely Gasis</span>
+          </h1>
+          <p class="hero-subtitle typewriter">Aspiring Web Developer & Data Encoder</p>
+          <p class="hero-description">
+            Transforming ideas into elegant, functional web experiences with precision and creativity.
+          </p>
+          
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">
+              <i class="fa-solid fa-briefcase"></i>
+              <span>View My Work</span>
+            </a>
+            <a href="#contact" class="btn btn-secondary">
+              <i class="fa-solid fa-paper-plane"></i>
+              <span>Get in Touch</span>
+            </a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat-item">
+              <div class="stat-value">2+</div>
+              <div class="stat-label">Years Learning</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">2+</div>
+              <div class="stat-label">Projects Built</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value">200+</div>
+              <div class="stat-label">Hours OJT</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scroll-indicator">
+        <div class="mouse">
+          <div class="wheel"></div>
+        </div>
+        <p>Scroll to explore</p>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="reveal">
+      <div class="section-header">
+        <h2 class="section-title">
+          <span class="title-number">01.</span>
+          About Me
+          <div class="title-line"></div>
+        </h2>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-text">
+          <p class="highlight-text">
+            Hello! I'm Novely, a passionate <strong>BS Computer Science graduate</strong> from Capiz State University, specializing in front-end web development and data management.
+          </p>
+          <p>
+            My journey in technology is driven by a love for creating intuitive, user-friendly web applications that solve real-world problems. I thrive on turning complex challenges into simple, beautiful solutions.
+          </p>
+          <p>
+            With hands-on experience from my internship at the Social Security System (SSS), I've honed my skills in data accuracy, confidentiality, and efficient workflow management. I'm now seeking opportunities to grow as a Web Developer or Data Encoder where I can contribute my technical expertise and creative problem-solving abilities.
+          </p>
+
+          <div class="about-highlights">
+            <div class="highlight-card">
+              <i class="fa-solid fa-trophy"></i>
+              <div>
+                <h4>Recognition</h4>
+                <p>Most Frequent Library User Award 2023</p>
+              </div>
+            </div>
+            <div class="highlight-card">
+              <i class="fa-solid fa-graduation-cap"></i>
+              <div>
+                <h4>Education</h4>
+                <p>BS Computer Science - July 2025</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-experience">
+          <div class="experience-card">
+            <div class="card-icon">
+              <i class="fa-solid fa-briefcase"></i>
+            </div>
+            <div class="card-content">
+              <h3>On-the-Job Training</h3>
+              <h4>Social Security System (SSS)</h4>
+              <p class="date">
+                <i class="fa-solid fa-calendar"></i>
+                March 2025 - May 2025
+              </p>
+              <ul class="experience-list">
+                <li><i class="fa-solid fa-check-circle"></i>Completed 200 hours at SSS Roxas Branch</li>
+                <li><i class="fa-solid fa-check-circle"></i>Encoded new member data for SSS number issuance</li>
+                <li><i class="fa-solid fa-check-circle"></i>Ensured data accuracy and confidentiality</li>
+                <li><i class="fa-solid fa-check-circle"></i>Assisted in clerical operations</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="reveal">
+      <div class="section-header">
+        <h2 class="section-title">
+          <span class="title-number">02.</span>
+          Skills & Expertise
+          <div class="title-line"></div>
+        </h2>
+      </div>
+
+      <div class="skills-container">
+        <!-- Technical Skills -->
+        <div class="skills-category">
+          <h3 class="category-title">
+            <i class="fa-solid fa-code"></i>
+            Technical Skills
+          </h3>
+          <div class="skills-grid">
+            <div class="skill-card" data-skill="90">
+              <div class="skill-icon"><i class="fa-brands fa-html5"></i></div>
+              <div class="skill-info">
+                <h4>HTML5</h4>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 90%"></div>
+                </div>
+                <span class="skill-percent">90%</span>
+              </div>
+            </div>
+
+            <div class="skill-card" data-skill="85">
+              <div class="skill-icon"><i class="fa-brands fa-css3-alt"></i></div>
+              <div class="skill-info">
+                <h4>CSS3</h4>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 85%"></div>
+                </div>
+                <span class="skill-percent">85%</span>
+              </div>
+            </div>
+
+            <div class="skill-card" data-skill="80">
+              <div class="skill-icon"><i class="fa-brands fa-js"></i></div>
+              <div class="skill-info">
+                <h4>JavaScript</h4>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 80%"></div>
+                </div>
+                <span class="skill-percent">80%</span>
+              </div>
+            </div>
+
+            <div class="skill-card" data-skill="70">
+              <div class="skill-icon"><i class="fa-solid fa-fire"></i></div>
+              <div class="skill-info">
+                <h4>Firebase</h4>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 70%"></div>
+                </div>
+                <span class="skill-percent">70%</span>
+              </div>
+            </div>
+
+            <div class="skill-card" data-skill="75">
+              <div class="skill-icon"><i class="fa-solid fa-database"></i></div>
+              <div class="skill-info">
+                <h4>MySQL</h4>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 75%"></div>
+                </div>
+                <span class="skill-percent">75%</span>
+              </div>
+            </div>
+
+            <div class="skill-card" data-skill="80">
+              <div class="skill-icon"><i class="fa-brands fa-git-alt"></i></div>
+              <div class="skill-info">
+                <h4>Git</h4>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 80%"></div>
+                </div>
+                <span class="skill-percent">80%</span>
+              </div>
+            </div>
+
+            <div class="skill-card" data-skill="85">
+              <div class="skill-icon"><i class="fa-brands fa-github"></i></div>
+              <div class="skill-info">
+                <h4>GitHub</h4>
+                <div class="skill-bar">
+                  <div class="skill-progress" style="width: 85%"></div>
+                </div>
+                <span class="skill-percent">85%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Soft Skills -->
+        <div class="skills-category">
+          <h3 class="category-title">
+            <i class="fa-solid fa-lightbulb"></i>
+            Soft Skills
+          </h3>
+          <div class="soft-skills-grid">
+            <div class="soft-skill-tag">
+              <i class="fa-solid fa-eye"></i>
+              <span>Attention to Detail</span>
+            </div>
+            <div class="soft-skill-tag">
+              <i class="fa-solid fa-puzzle-piece"></i>
+              <span>Problem Solving</span>
+            </div>
+            <div class="soft-skill-tag">
+              <i class="fa-solid fa-arrows-spin"></i>
+              <span>Adaptability</span>
+            </div>
+            <div class="soft-skill-tag">
+              <i class="fa-solid fa-users"></i>
+              <span>Team Collaboration</span>
+            </div>
+            <div class="soft-skill-tag">
+              <i class="fa-solid fa-language"></i>
+              <span>Filipino</span>
+            </div>
+            <div class="soft-skill-tag">
+              <i class="fa-solid fa-comments"></i>
+              <span>Hiligaynon</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="reveal">
+      <div class="section-header">
+        <h2 class="section-title">
+          <span class="title-number">03.</span>
+          Featured Projects
+          <div class="title-line"></div>
+        </h2>
+      </div>
+
+      <div class="projects-grid">
+        <!-- Project 1: Recommender System -->
+        <div class="project-card featured">
+          <div class="project-image-container">
+            <div class="slider-viewport" id="project-slider-1">
+              <div class="slides">
+                <div class="slide"><img src="image1.jpg" alt="Recommender Dashboard" loading="lazy"></div>
+                <div class="slide"><img src="image2.jpg" alt="Student Interface" loading="lazy"></div>
+                <div class="slide"><img src="image3.jpg" alt="Admin Panel" loading="lazy"></div>
+                <div class="slide"><img src="image4.jpg" alt="Recommendation Algorithm" loading="lazy"></div>
+                <div class="slide"><img src="image5.jpg" alt="Data Visualization" loading="lazy"></div>
+                <div class="slide"><img src="image6.jpg" alt="User Management" loading="lazy"></div>
+                <div class="slide"><img src="image7.jpg" alt="Reports Section" loading="lazy"></div>
+              </div>
+
+              <button class="slider-arrow prev" data-slider="project-slider-1" aria-label="Previous slide">
+                <i class="fa-solid fa-chevron-left"></i>
+              </button>
+              <button class="slider-arrow next" data-slider="project-slider-1" aria-label="Next slide">
+                <i class="fa-solid fa-chevron-right"></i>
+              </button>
+
+              <div class="slider-dots" aria-hidden="true"></div>
+            </div>
+            <span class="project-badge">Featured</span>
+          </div>
+
+          <div class="project-content">
+            <h3>Student Financial Assistance Recommender System</h3>
+            <p>
+              A sophisticated web application that leverages weighted ranking algorithms to match students with appropriate financial assistance programs. The system analyzes multiple criteria including academic performance, financial need, and eligibility requirements to provide personalized recommendations.
+            </p>
+            
+            <div class="project-tech">
+              <span class="tech-tag"><i class="fa-brands fa-html5"></i> HTML</span>
+              <span class="tech-tag"><i class="fa-brands fa-css3-alt"></i> CSS</span>
+              <span class="tech-tag"><i class="fa-brands fa-js"></i> JavaScript</span>
+              <span class="tech-tag"><i class="fa-solid fa-database"></i> MySQL</span>
+            </div>
+
+            <div class="project-features">
+              <div class="feature-item">
+                <i class="fa-solid fa-check"></i>
+                <span>Advanced matching algorithm</span>
+              </div>
+              <div class="feature-item">
+                <i class="fa-solid fa-check"></i>
+                <span>Real-time recommendations</span>
+              </div>
+              <div class="feature-item">
+                <i class="fa-solid fa-check"></i>
+                <span>Admin dashboard</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2: Portfolio -->
+        
+
+          <div class="project-content">
+            <h3>Personal Portfolio Website</h3>
+            <p>
+              A modern, responsive portfolio website showcasing my projects, skills, and professional journey. Features smooth animations, dark mode toggle, and an intuitive user interface designed for optimal user experience.
+            </p>
+            
+            <div class="project-tech">
+              <span class="tech-tag"><i class="fa-brands fa-html5"></i> HTML</span>
+              <span class="tech-tag"><i class="fa-brands fa-css3-alt"></i> CSS</span>
+              <span class="tech-tag"><i class="fa-brands fa-js"></i> JavaScript</span>
+            </div>
+
+            <div class="project-links">
+              <a href="https://novelygasis233-art.github.io/novelyportfolio/" target="_blank" class="btn btn-small btn-primary">
+                <i class="fa-solid fa-external-link-alt"></i>
+                <span>View Live</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="reveal">
+      <div class="section-header">
+        <h2 class="section-title">
+          <span class="title-number">04.</span>
+          Get In Touch
+          <div class="title-line"></div>
+        </h2>
+      </div>
+
+      <div class="contact-container">
+        <div class="contact-intro">
+          <h3>Let's Work Together</h3>
+          <p>
+            I'm currently seeking opportunities as a Web Developer or Data Encoder. Whether you have a project in mind, need a reliable team member, or just want to connect, I'd love to hear from you!
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <a href="mailto:novelya.gasis@gmail.com" class="contact-card">
+            <div class="contact-icon">
+              <i class="fa-solid fa-envelope"></i>
+            </div>
+            <h4>Email</h4>
+            <p>novelya.gasis@gmail.com</p>
+          </a>
+
+          <a href="tel:09159980930" class="contact-card">
+            <div class="contact-icon">
+              <i class="fa-solid fa-phone"></i>
+            </div>
+            <h4>Phone</h4>
+            <p>09159980930</p>
+          </a>
+
+          <div class="contact-card">
+            <div class="contact-icon">
+              <i class="fa-solid fa-location-dot"></i>
+            </div>
+            <h4>Location</h4>
+            <p>Pavia, Iloilo, Philippines</p>
+          </div>
+
+          <a href="https://github.com/novelygasis233-art" target="_blank" class="contact-card">
+            <div class="contact-icon">
+              <i class="fa-brands fa-github"></i>
+            </div>
+            <h4>GitHub</h4>
+            <p>@novelygasis233-art</p>
+          </a>
+        </div>
+
+        <div class="cta-section">
+          <a href="mailto:novelya.gasis@gmail.com" class="btn btn-large btn-primary">
+            <i class="fa-solid fa-paper-plane"></i>
+            <span>Send Me a Message</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">
+        <i class="fa-solid fa-code"></i>
+        <span>Novely Gasis</span>
+      </div>
+      
+      <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <div class="footer-social">
+        <a href="https://github.com/novelygasis233-art" target="_blank" aria-label="GitHub">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="mailto:novelya.gasis@gmail.com" aria-label="Email">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+      </div>
+
+      <p class="footer-copyright">
+        &copy; <span id="year-footer"></span> Novely Gasis. Crafted with <i class="fa-solid fa-heart"></i> and <i class="fa-solid fa-mug-hot"></i>
+      </p>
+    </div>
+
+    <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+      <i class="fa-solid fa-arrow-up"></i>
+    </button>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
