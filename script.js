@@ -3,32 +3,34 @@
 // ===================================
 const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
-const themeIcon = themeToggle.querySelector('i');
+const themeIcon = themeToggle ? themeToggle.querySelector('i') : null;
 
-// Load saved theme
-const savedTheme = localStorage.getItem('theme');
-if (savedTheme === 'light') {
-  body.classList.add('light');
-  themeIcon.classList.remove('fa-moon');
-  themeIcon.classList.add('fa-sun');
-}
-
-themeToggle.addEventListener('click', () => {
-  body.classList.toggle('light');
-  const isLight = body.classList.contains('light');
-  
-  // Update icon
-  if (isLight) {
+if (themeToggle && themeIcon) {
+  // Load saved theme
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'light') {
+    body.classList.add('light');
     themeIcon.classList.remove('fa-moon');
     themeIcon.classList.add('fa-sun');
-  } else {
-    themeIcon.classList.remove('fa-sun');
-    themeIcon.classList.add('fa-moon');
   }
-  
-  // Save preference
-  localStorage.setItem('theme', isLight ? 'light' : 'dark');
-});
+
+  themeToggle.addEventListener('click', () => {
+    body.classList.toggle('light');
+    const isLight = body.classList.contains('light');
+    
+    // Update icon
+    if (isLight) {
+      themeIcon.classList.remove('fa-moon');
+      themeIcon.classList.add('fa-sun');
+    } else {
+      themeIcon.classList.remove('fa-sun');
+      themeIcon.classList.add('fa-moon');
+    }
+    
+    // Save preference
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+  });
+}
 
 
 // ===================================
@@ -37,28 +39,30 @@ themeToggle.addEventListener('click', () => {
 const menuToggle = document.getElementById('menu-toggle');
 const navLinks = document.getElementById('nav-links');
 
-menuToggle.addEventListener('click', () => {
-  navLinks.classList.toggle('show');
-  const icon = menuToggle.querySelector('i');
-  
-  if (navLinks.classList.contains('show')) {
-    icon.classList.remove('fa-bars');
-    icon.classList.add('fa-times');
-  } else {
-    icon.classList.remove('fa-times');
-    icon.classList.add('fa-bars');
-  }
-});
-
-// Close menu when clicking outside
-document.addEventListener('click', (e) => {
-  if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
-    navLinks.classList.remove('show');
+if (menuToggle && navLinks) {
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('show');
     const icon = menuToggle.querySelector('i');
-    icon.classList.remove('fa-times');
-    icon.classList.add('fa-bars');
-  }
-});
+    
+    if (navLinks.classList.contains('show')) {
+      icon.classList.remove('fa-bars');
+      icon.classList.add('fa-times');
+    } else {
+      icon.classList.remove('fa-times');
+      icon.classList.add('fa-bars');
+    }
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!menuToggle.contains(e.target) && !navLinks.contains(e.target) && navLinks.classList.contains('show')) {
+      navLinks.classList.remove('show');
+      const icon = menuToggle.querySelector('i');
+      icon.classList.remove('fa-times');
+      icon.classList.add('fa-bars');
+    }
+  });
+}
 
 
 // ===================================
@@ -68,25 +72,29 @@ const navItems = document.querySelectorAll('.nav-item');
 
 navItems.forEach(link => {
   link.addEventListener('click', (e) => {
-    e.preventDefault();
     const targetId = link.getAttribute('href');
-    const targetSection = document.querySelector(targetId);
-    
-    if (targetSection) {
-      targetSection.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
-      });
+    if (targetId.startsWith('#')) {
+      e.preventDefault();
+      const targetSection = document.querySelector(targetId);
       
-      // Update active state
-      navItems.forEach(item => item.classList.remove('active'));
-      link.classList.add('active');
-      
-      // Close mobile menu
-      navLinks.classList.remove('show');
-      const icon = menuToggle.querySelector('i');
-      icon.classList.remove('fa-times');
-      icon.classList.add('fa-bars');
+      if (targetSection) {
+        targetSection.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+        
+        // Update active state
+        navItems.forEach(item => item.classList.remove('active'));
+        link.classList.add('active');
+        
+        // Close mobile menu if open
+        if (navLinks && menuToggle) {
+            navLinks.classList.remove('show');
+            const icon = menuToggle.querySelector('i');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        }
+      }
     }
   });
 });
@@ -98,16 +106,21 @@ navItems.forEach(link => {
 const scrollProgress = document.getElementById('scroll-progress');
 
 function updateScrollProgress() {
+  if (!scrollProgress) return;
   const windowHeight = window.innerHeight;
-  const documentHeight = document.documentElement.scrollHeight - windowHeight;
+  // document.documentElement.scrollHeight is total height of content
+  // document.documentElement.scrollHeight - windowHeight is the maximum scrollable distance
+  const documentHeight = document.documentElement.scrollHeight - windowHeight; 
   const scrolled = window.scrollY;
-  const progress = (scrolled / documentHeight) * 100;
   
-  scrollProgress.style.width = `${Math.min(progress, 100)}%`;
+  if (documentHeight > 0) {
+    const progress = (scrolled / documentHeight) * 100;
+    scrollProgress.style.width = `${Math.min(progress, 100)}%`;
+  } else {
+    // Handle case where content is not scrollable (e.g., very short page)
+    scrollProgress.style.width = '100%'; 
+  }
 }
-
-window.addEventListener('scroll', updateScrollProgress);
-
 
 // ===================================
 // Header Scroll Effect
@@ -115,6 +128,7 @@ window.addEventListener('scroll', updateScrollProgress);
 const header = document.querySelector('header');
 
 function handleHeaderScroll() {
+  if (!header) return;
   if (window.scrollY > 50) {
     header.classList.add('scrolled');
   } else {
@@ -122,15 +136,14 @@ function handleHeaderScroll() {
   }
 }
 
-window.addEventListener('scroll', handleHeaderScroll);
-
 
 // ===================================
 // Active Section Detection
 // ===================================
 function updateActiveSection() {
   const sections = document.querySelectorAll('section[id]');
-  const scrollPos = window.scrollY + 100;
+  // Offset the scroll position by the height of the fixed header
+  const scrollPos = window.scrollY + 100; 
   
   sections.forEach(section => {
     const sectionTop = section.offsetTop;
@@ -139,7 +152,10 @@ function updateActiveSection() {
     
     if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
       navItems.forEach(item => {
+        // Remove 'active' from all nav items
         item.classList.remove('active');
+        
+        // Add 'active' to the corresponding nav item
         if (item.getAttribute('href') === `#${sectionId}`) {
           item.classList.add('active');
         }
@@ -147,8 +163,6 @@ function updateActiveSection() {
     }
   });
 }
-
-window.addEventListener('scroll', updateActiveSection);
 
 
 // ===================================
@@ -158,17 +172,16 @@ const revealElements = document.querySelectorAll('.reveal');
 
 function handleReveal() {
   revealElements.forEach(element => {
-    const elementTop = element.getBoundingClientRect().top;
+    // Get the element's position relative to the viewport
+    const elementTop = element.getBoundingClientRect().top; 
     const windowHeight = window.innerHeight;
     
-    if (elementTop < windowHeight - 100) {
+    // Check if element is within the visible area with a 100px buffer
+    if (elementTop < windowHeight - 100) { 
       element.classList.add('active');
     }
   });
 }
-
-window.addEventListener('scroll', handleReveal);
-window.addEventListener('load', handleReveal);
 
 
 // ===================================
@@ -186,13 +199,18 @@ const skillObserver = new IntersectionObserver((entries) => {
     if (entry.isIntersecting) {
       const progressBar = entry.target.querySelector('.skill-progress');
       if (progressBar) {
-        const width = progressBar.style.width;
-        progressBar.style.width = '0%';
+        // Store the target width from the CSS/HTML data attributes
+        const targetWidth = progressBar.style.width; 
+        
+        // Reset width to 0 for animation start
+        progressBar.style.width = '0%'; 
+        
+        // Timeout ensures the width reset is applied before the transition starts
         setTimeout(() => {
-          progressBar.style.width = width;
-        }, 100);
+          progressBar.style.width = targetWidth; // Animate to target width
+        }, 100); 
       }
-      skillObserver.unobserve(entry.target);
+      skillObserver.unobserve(entry.target); // Stop observing once animated
     }
   });
 }, observerOptions);
@@ -205,6 +223,9 @@ skillCards.forEach(card => skillObserver.observe(card));
 // ===================================
 function createStarfield() {
   const starfield = document.getElementById('starfield');
+  if (!starfield) return;
+
+  // Calculate star count based on screen area, min 50
   const starCount = Math.max(50, Math.floor((window.innerWidth * window.innerHeight) / 25000));
   
   function randomRange(min, max) {
@@ -230,7 +251,7 @@ function createStarfield() {
     star.style.animationDuration = `${duration}s`;
     star.style.animationDelay = `${delay}s`;
     
-    // Occasional color tints
+    // Occasional color tints for realism
     if (Math.random() > 0.96) {
       star.style.background = '#ffd86b';
     } else if (Math.random() > 0.98) {
@@ -242,7 +263,7 @@ function createStarfield() {
 }
 
 // Create stars on load
-createStarfield();
+document.addEventListener('DOMContentLoaded', createStarfield);
 
 // Recreate on resize (debounced)
 let resizeTimeout;
@@ -250,14 +271,16 @@ window.addEventListener('resize', () => {
   clearTimeout(resizeTimeout);
   resizeTimeout = setTimeout(() => {
     const starfield = document.getElementById('starfield');
-    starfield.innerHTML = '';
-    createStarfield();
+    if (starfield) {
+        starfield.innerHTML = '';
+        createStarfield();
+    }
   }, 500);
 });
 
 
 // ===================================
-// Image Slider
+// Image Slider Class
 // ===================================
 class Slider {
   constructor(rootId) {
@@ -269,7 +292,6 @@ class Slider {
     this.total = this.slides.length;
     this.currentIndex = 0;
     this.dotsContainer = this.root.querySelector('.slider-dots');
-    this.isTransitioning = false;
     
     this.init();
   }
@@ -277,12 +299,14 @@ class Slider {
   init() {
     // Create dots
     this.dots = [];
-    for (let i = 0; i < this.total; i++) {
-      const dot = document.createElement('button');
-      dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
-      dot.addEventListener('click', () => this.goToSlide(i));
-      this.dotsContainer.appendChild(dot);
-      this.dots.push(dot);
+    if (this.dotsContainer) {
+      for (let i = 0; i < this.total; i++) {
+        const dot = document.createElement('button');
+        dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+        dot.addEventListener('click', () => this.goToSlide(i));
+        this.dotsContainer.appendChild(dot);
+        this.dots.push(dot);
+      }
     }
     
     // Arrow buttons
@@ -303,9 +327,6 @@ class Slider {
     
     // Initial render
     this.updateSlider();
-    
-    // Auto-advance (optional - currently disabled)
-    // this.startAutoplay(5000);
   }
   
   setupSwipe() {
@@ -354,9 +375,7 @@ class Slider {
   }
   
   goToSlide(index) {
-    if (this.isTransitioning) return;
-    
-    // Wrap around
+    // Clamp index to boundaries
     if (index < 0) index = this.total - 1;
     if (index >= this.total) index = 0;
     
@@ -377,34 +396,18 @@ class Slider {
     this.slidesWrap.style.transform = `translateX(${offset}%)`;
     
     // Update dots
-    this.dots.forEach((dot, index) => {
-      dot.classList.toggle('active', index === this.currentIndex);
-    });
-  }
-  
-  startAutoplay(interval = 5000) {
-    this.stopAutoplay();
-    this.autoplayInterval = setInterval(() => {
-      this.nextSlide();
-    }, interval);
-    
-    // Pause on hover
-    this.root.addEventListener('pointerenter', () => this.stopAutoplay());
-    this.root.addEventListener('pointerleave', () => this.startAutoplay(interval));
-  }
-  
-  stopAutoplay() {
-    if (this.autoplayInterval) {
-      clearInterval(this.autoplayInterval);
-      this.autoplayInterval = null;
+    if (this.dots) {
+      this.dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === this.currentIndex);
+      });
     }
   }
 }
 
-// Initialize sliders
+// Initialize sliders (must be run on DOMContentLoaded)
 document.addEventListener('DOMContentLoaded', () => {
-  new Slider('project-slider-1');
-  // Add more sliders here if needed
+  // Replace 'project-slider-1' with the actual ID of your slider container
+  new Slider('project-slider-1'); 
 });
 
 
@@ -414,6 +417,7 @@ document.addEventListener('DOMContentLoaded', () => {
 const backToTop = document.getElementById('back-to-top');
 
 function handleBackToTop() {
+  if (!backToTop) return;
   if (window.scrollY > 500) {
     backToTop.classList.add('visible');
   } else {
@@ -421,20 +425,22 @@ function handleBackToTop() {
   }
 }
 
-backToTop.addEventListener('click', () => {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
+if (backToTop) {
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   });
-});
-
-window.addEventListener('scroll', handleBackToTop);
-
+}
 
 // ===================================
 // Footer Year
 // ===================================
-document.getElementById('year-footer').textContent = new Date().getFullYear();
+const yearFooter = document.getElementById('year-footer');
+if (yearFooter) {
+    yearFooter.textContent = new Date().getFullYear();
+}
 
 
 // ===================================
@@ -483,7 +489,7 @@ function debounce(func, wait = 100) {
   };
 }
 
-// Optimize scroll events
+// Create the optimized scroll handler
 const optimizedScrollHandler = debounce(() => {
   updateScrollProgress();
   handleHeaderScroll();
@@ -492,13 +498,17 @@ const optimizedScrollHandler = debounce(() => {
   handleBackToTop();
 }, 10);
 
-// Replace individual scroll listeners with optimized version
-window.removeEventListener('scroll', updateScrollProgress);
-window.removeEventListener('scroll', handleHeaderScroll);
-window.removeEventListener('scroll', updateActiveSection);
-window.removeEventListener('scroll', handleReveal);
-window.removeEventListener('scroll', handleBackToTop);
+// Add the single, optimized scroll listener
 window.addEventListener('scroll', optimizedScrollHandler);
+
+// Execute on load to ensure initial state is correct (e.g., header class, active section)
+window.addEventListener('load', () => {
+    handleHeaderScroll();
+    updateActiveSection();
+    handleReveal();
+    updateScrollProgress();
+    handleBackToTop();
+});
 
 
 // ===================================
@@ -507,7 +517,7 @@ window.addEventListener('scroll', optimizedScrollHandler);
 
 // Add skip to main content link
 const skipLink = document.createElement('a');
-skipLink.href = '#main';
+skipLink.href = '#main'; // Assuming your main content has an ID of 'main'
 skipLink.className = 'skip-link';
 skipLink.textContent = 'Skip to main content';
 skipLink.style.cssText = `
@@ -532,7 +542,7 @@ document.body.insertBefore(skipLink, document.body.firstChild);
 const announcer = document.createElement('div');
 announcer.setAttribute('aria-live', 'polite');
 announcer.setAttribute('aria-atomic', 'true');
-announcer.className = 'sr-only';
+announcer.className = 'sr-only'; // Use CSS to visually hide this
 announcer.style.cssText = `
   position: absolute;
   left: -10000px;
@@ -553,8 +563,9 @@ function announce(message) {
 navItems.forEach(link => {
   link.addEventListener('click', () => {
     const sectionName = link.textContent.trim();
-    setTimeout(() => {
-      announce(`Navigated to ${sectionName} section`);
+    // Use a slight delay to ensure scroll has finished
+    setTimeout(() => { 
+      announce(`Mapsd to ${sectionName} section`);
     }, 500);
   });
 });
